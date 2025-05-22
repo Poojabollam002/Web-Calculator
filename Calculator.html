@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SmartCalc - Web Calculator</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, lightcyan, lightblue);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background-color: navy;
+      color: white;
+      padding: 1rem 2rem;
+      text-align: center;
+      box-shadow: 0 4px 8px gray;
+    }
+
+    header h1 {
+      font-size: 2rem;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 30px 10px;
+    }
+
+    .calculator {
+      background-color: white;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px dimgray;
+      padding: 30px 20px;
+      width: 320px;
+      text-align: center;
+    }
+
+    .calculator h2 {
+      margin-bottom: 20px;
+      color: navy;
+    }
+
+    .display {
+      width: 100%;
+      height: 60px;
+      font-size: 28px;
+      margin-bottom: 20px;
+      padding: 10px;
+      border: 2px solid gray;
+      border-radius: 12px;
+      text-align: right;
+      background-color: ghostwhite;
+      color: black;
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+    }
+
+    button {
+      padding: 18px;
+      font-size: 18px;
+      font-weight: bold;
+      border: none;
+      border-radius: 12px;
+      background-color: lightsteelblue;
+      color: darkblue;
+      cursor: pointer;
+      transition: 0.2s ease-in-out;
+    }
+
+    button:hover {
+      background-color: lightskyblue;
+      transform: scale(1.05);
+    }
+
+    button:active {
+      transform: scale(0.95);
+      background-color: deepskyblue;
+    }
+
+    .clear {
+      background-color: lightcoral;
+      color: white;
+    }
+
+    .clear:hover {
+      background-color: crimson;
+    }
+
+    .backspace {
+      background-color: gold;
+      color: black;
+    }
+
+    .backspace:hover {
+      background-color: goldenrod;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 14px;
+      background-color: aliceblue;
+      color: darkslategray;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>SmartCalc</h1>
+  </header>
+
+  <main>
+    <div class="calculator">
+      <h2>Web Calculator</h2>
+      <input type="text" id="display" class="display" disabled placeholder="0" />
+      <div class="buttons">
+        <button onclick="append('7')">7</button>
+        <button onclick="append('8')">8</button>
+        <button onclick="append('9')">9</button>
+        <button onclick="append('/')">÷</button>
+        <button onclick="append('4')">4</button>
+        <button onclick="append('5')">5</button>
+        <button onclick="append('6')">6</button>
+        <button onclick="append('*')">×</button>
+        <button onclick="append('1')">1</button>
+        <button onclick="append('2')">2</button>
+        <button onclick="append('3')">3</button>
+        <button onclick="append('-')">−</button>
+        <button onclick="append('0')">0</button>
+        <button onclick="append('.')">.</button>
+        <button onclick="calculate()">=</button>
+        <button onclick="append('+')">+</button>
+        <button class="clear" onclick="clearDisplay()">C</button>
+        <button class="backspace" onclick="backspace()">⌫</button>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2025 SmartCalc | Built with HTML, CSS & JavaScript
+  </footer>
+
+  <script>
+    function append(value) {
+      const display = document.getElementById("display");
+      display.value += value;
+    }
+
+    function clearDisplay() {
+      document.getElementById("display").value = "";
+    }
+
+    function backspace() {
+      const display = document.getElementById("display");
+      display.value = display.value.slice(0, -1);
+    }
+
+    function calculate() {
+      const display = document.getElementById("display");
+      try {
+        display.value = eval(display.value);
+      } catch {
+        display.value = "Error";
+      }
+    }
+  </script>
+
+</body>
+</html>
